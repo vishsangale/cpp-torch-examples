@@ -1,5 +1,7 @@
 
 #include <iostream>
+
+#include <torch/types.h>
 #include <torch/torch.h>
 
 
@@ -35,5 +37,26 @@ int main()
     std::cout << std::endl;
 
     std::cout << "Tensor size: " << tensor.sizes() << std::endl;
+
+    // torch tensor from vectors
+    {
+        std::vector<int> torch_vec{1, 2, 3, 4, 5, 6};
+
+        auto opts = torch::TensorOptions().dtype(torch::kInt32);
+
+        torch::Tensor t = torch::from_blob(torch_vec.data(), {static_cast<long long>(torch_vec.size())}, opts);
+
+        std::cout << t << std::endl;
+    }
+    {
+        std::vector<float> torch_vec{1.1, 2.1, 3.1, 4.1, 5.1, 6.1};
+
+        auto opts = torch::TensorOptions().dtype(torch::kFloat32);
+
+        torch::Tensor t = torch::from_blob(torch_vec.data(), {3, 2}, opts);
+
+        std::cout << t << std::endl;
+    }
+
 }
 
