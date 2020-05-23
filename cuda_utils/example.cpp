@@ -14,7 +14,7 @@ int main ()
     }
     else
     {
-        std::cout << "CUDA not avaialble, using CPU." << std::endl;
+        std::cout << "CUDA not available, using CPU." << std::endl;
     }
     return 0;
 }
